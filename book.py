@@ -11,3 +11,4 @@ class Book:
         
     def mark_available(self):
         self.is_available = True
+        
