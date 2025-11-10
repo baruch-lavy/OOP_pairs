@@ -1,0 +1,27 @@
+[
+    {
+        "id": 101,
+        "full_name": "baruch lavy",
+        "loans": 0,
+        "borrowed_books": [
+            {
+                "id": 101,
+                "title": "harry potter",
+                "author": "j.k rolling",
+                "is_available": false
+            },
+            {
+                "id": 102,
+                "title": "the hobbit",
+                "author": "tolkin",
+                "is_available": false
+            }
+        ]
+    },
+    {
+        "id": 102,
+        "full_name": "michal lavy",
+        "loans": 0,
+        "borrowed_books": []
+    }
+]

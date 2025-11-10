@@ -1,7 +1,7 @@
 from book import Book
 from user import Member
 from loan import Loan
-from csv_managment import FileManegment
+from json_managment import FileManegment
 import datetime
 import csv
 
@@ -15,32 +15,28 @@ class Library:
     is_new_book = True
     def add_book(self,title,book):
         self.books[title] = book
-        FileManegment.csv_write('books.csv',book)
+        FileManegment.json_write('books.json',book)
     
     is_new_user = True
     def add_member(self,name,member):
         self.members[name] = member
-        field_names = member.keys()
-        data = member
-        with open('users.csv','a',newline='') as file:
-            writer = csv.DictWriter(file,fieldnames=field_names)
-            if Library.is_new_user:
-                writer.writeheader()
-                Library.is_new_user = False
-            writer.writerow(data)
-    
+        FileManegment.json_write('users.json',member)
+       
     def borrow(self,book:Book,member:Member,date,loan:Loan):
         if self.books[book.title].get('id') is not None and self.members[member.full_name].get('id') is not None:
             print('exec borrow')
             self.loans[loan.open_date] = loan.__dict__
             book.mark_unavailable()
             member.increment_loans()
+            member.borrow_book(book)
             
     def return_book(self,book:Book,member:Member,date,loan:Loan):
         if self.loans[loan.open_date].get('id') is not None and self.loans[loan.open_date].get('status') == 'open':
             member.decrement_loans()
+            member.return_book(book)
             loan.close_loan(date)
             book.mark_available()
+            
             
     def list_availble(self):
         return [book for book in self.books if self.books[book]['is_available']]
@@ -78,10 +74,12 @@ library.add_member(member_2.full_name,member_2.__dict__)
 
 # create loans
 loan_1 = Loan(101,book_1.id,member_1.id,datetime.datetime.now())
+loan_2 = Loan(102,book_2.id,member_1.id,datetime.datetime.now())
 # print(loan_1.__dict__)
 
 # execute_loans
 library.borrow(book_1,member_1,datetime.datetime.now(),loan_1)
+library.borrow(book_2,member_1,datetime.datetime.now(),loan_2)
 # print(library.loans)
 # print(book_1.__dict__)
 
@@ -89,6 +87,6 @@ library.borrow(book_1,member_1,datetime.datetime.now(),loan_1)
 library.return_book(book_1,member_1,datetime.datetime.now(),loan_1)
 # print(f'after {library.loans}')
 
-print(library.search_book('harry potter'))
-print(library.books)
-print(library.list_availble())
+# print(library.search_book('harry potter'))
+# print(library.books)
+# print(library.list_availble())
