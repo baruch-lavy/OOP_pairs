@@ -9,7 +9,11 @@ class Member:
         self.loans = active_loans_count
         self.borrowed_books:list[Book] = []
     
-    def borrow_book(book:Book)
+    def borrow_book(self,book:Book):
+        self.borrowed_books.append(book)
+        
+    def return_book(self,book:Book):
+        self.borrowed_books.remove(book)
        
     def increment_loans(self):
         self.loans += 1
