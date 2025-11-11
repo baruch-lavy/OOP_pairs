@@ -1,26 +1,25 @@
 [
     {
-        "id": 101,
-        "full_name": "baruch lavy",
+        "id": 1,
+        "full_name": "elazar",
         "loans": 0,
-        "borrowed_books": [
-            {
-                "id": 101,
-                "title": "harry potter",
-                "author": "j.k rolling",
-                "is_available": false
-            },
-            {
-                "id": 102,
-                "title": "the hobbit",
-                "author": "tolkin",
-                "is_available": false
-            }
-        ]
+        "borrowed_books": []
     },
     {
-        "id": 102,
-        "full_name": "michal lavy",
+        "id": 2,
+        "full_name": "hadas",
+        "loans": 0,
+        "borrowed_books": []
+    },
+    {
+        "id": 3,
+        "full_name": "baruch",
+        "loans": 0,
+        "borrowed_books": []
+    },
+    {
+        "id": 4,
+        "full_name": "michal",
         "loans": 0,
         "borrowed_books": []
     }
